@@ -1,6 +1,6 @@
 package com.skypro.calculator.controller;
 
-import com.skypro.calculator.exception.IllegalNumberException;
+import com.skypro.calculator.exception.IllegalArgumentException;
 import com.skypro.calculator.servise.CalculatorServise;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +13,8 @@ public class CalculatorController {
     public CalculatorController(CalculatorServise calculatorServise) {
         this.calculatorServise = calculatorServise;
     }
-    @ExceptionHandler(value = IllegalNumberException.class)
-    public ResponseEntity<String> illegalNumberHandler(IllegalNumberException e){
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<String> illegalNumberHandler(IllegalArgumentException e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
     @GetMapping("/")

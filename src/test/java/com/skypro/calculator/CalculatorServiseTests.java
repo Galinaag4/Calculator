@@ -1,9 +1,7 @@
 package com.skypro.calculator;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.skypro.calculator.exception.IllegalNumberException;
+import com.skypro.calculator.exception.IllegalArgumentException;
 import com.skypro.calculator.servise.CalculatorServise;
-import org.assertj.core.internal.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,37 +37,37 @@ public class CalculatorServiseTests {
 
     @Test
     public void divideByZeroThrowsExceptipn(){
-        Assertions.assertThrows(IllegalNumberException.class,()->{
+        Assertions.assertThrows(IllegalArgumentException.class,()->{
             calculatorServise.divide(1,0);
         });
     }
 
     public static List<Arguments> plusTestSuites(){
         return List.of(
-                Arguments.of(14,6,8),
-                Arguments.of(10,5,3),
-                Arguments.of(0,-6,22)
+                Arguments.of(14,6,20),
+                Arguments.of(10,5,15),
+                Arguments.of(0,6,6)
         );
     }
     public static List<Arguments> minusTestSuites(){
         return List.of(
-                Arguments.of(3,0,0),
+                Arguments.of(3,1,2),
                 Arguments.of(0,0,0),
-                Arguments.of(-1,-6,7)
+                Arguments.of(1,-6,7)
         );
     }
     public static List<Arguments> multiplyTestSuites(){
         return List.of(
                 Arguments.of(0,0,0),
-                Arguments.of(-1,-5,10),
-                Arguments.of(0,-6,22)
+                Arguments.of(1,5,5),
+                Arguments.of(1,-6,-6)
         );
     }
     public static List<Arguments> divideTestSuites(){
         return List.of(
-                Arguments.of(14,6,8),
-                Arguments.of(13,-5,4),
-                Arguments.of(10,0,22)
+                Arguments.of(14,2,7),
+                Arguments.of(13,1,13),
+                Arguments.of(10,5,2)
         );
     }
 }
